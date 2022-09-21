@@ -21,3 +21,8 @@ Pierwszym widocznym efektem działania skryptu jest otworzenie strony szczegół
 ### 4. Przeklikanie domyślnej akcji konwertowania
 Następnie następuje kliknięcie przycisku akcji "Convert" kontynuowane poprzez kliknięcie przycisku o tej samej etykiecie na nowym okienku. W dalszej kolejności spisywane jest *id* nowo utowrzonego konta po czym okienko jest zamykane. Pomiędzy niektórymi przejściami skryptu zastosowano metodę ```cy.wait()``` w celu upewnienia się, że wszystkie komponenty zostały całkowicie wczytane. Niekiedy skrypt próbuje kliknąć w przycisk, który jeszcze się całkowicie nie wygenerował generując błąd.
 ### 5. Otworzenie list (odpowiednio kont, kontaktów oraz okazji) i sprawdzenie czy znajdują się w nich rekordy stworzone z pomocą konwersji
+W celu sprawdzenia czy w wyniku konwersji nowe rekordy rzeczywiście się utworzyły skrypt otwiera kolejne zakładki z listami rekordów. W każdej z nich dostaje się do pierwszego linku w pierwszym wierszu (rekordzie) i sprawdza czy te linki składają się z odpowiednich nazw użytych podczas tworzenia Leada.
+### 6. Usunięcie nowo utworzonego konta co skutkuje usunięcie powiązanego kontaktu i okazji
+Na końcu skryptu usuwany jest rekord nowego konta za pomocą funkcji analogicznej do tworzenia rekordów. Wykorzystywane jest do tego wcześniej zapisywane *id* tego konta. Reakcją systemu na usunięcie konta jest usunięcie wszystkich pochodnych rekordów czyli kontaktów oraz okazji biznesowych. W ten sposób skrypt nie pozostawia po sobie żadnych testowych rekordów. 
+
+## Ważne pliki
