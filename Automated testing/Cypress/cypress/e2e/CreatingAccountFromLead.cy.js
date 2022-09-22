@@ -42,6 +42,7 @@ describe('empty spec', () => {
     const lead = new Lead()
     const testLastName = 'Test Name'
     const testCompanyName = 'TestCompany'
+    
     lead.setLastName(testLastName)
     lead.setCompany(testCompanyName)
 
