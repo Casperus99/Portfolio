@@ -2,6 +2,14 @@ import { Lead } from "../domain/lead"
 
 describe('empty spec', () => {
   it('logs in', () => {
+    const resizeObserverLoopErrRe = /^[^(ResizeObserver loop limit exceeded)]/
+
+    const username = 'nowakowski.kacperr@mindful-bear-nb7lda.com'
+    const password = 'Sales-Casp99'
+
+    const testLastName = 'Test Name'
+    const testCompanyName = 'TestCompany'
+    
     cy
       .request({
         body: {
@@ -16,13 +24,13 @@ describe('empty spec', () => {
           lt: 'standard',
           oauth_callback: '',
           oauth_token: '',
-          pw: 'Sales-Casp99',
+          pw: password,
           qs: '',
           serverid: '',
           startURL: '',
-          un: 'nowakowski.kacperr@mindful-bear-nb7lda.com',
+          un: username,
           useSecure: 'true',
-          username: 'nowakowski.kacperr@mindful-bear-nb7lda.com',
+          username: username,
           width: '2560',
         },
         form: true,
@@ -30,7 +38,7 @@ describe('empty spec', () => {
         url: 'https://login.salesforce.com/',
       })
 
-    const resizeObserverLoopErrRe = /^[^(ResizeObserver loop limit exceeded)]/
+    
     Cypress.on('uncaught:exception', (err) => {
       /* returning false here prevents Cypress from failing the test */
       if (resizeObserverLoopErrRe.test(err.message)) {
@@ -40,9 +48,6 @@ describe('empty spec', () => {
 
     //Create new Lead
     const lead = new Lead()
-    const testLastName = 'Test Name'
-    const testCompanyName = 'TestCompany'
-    
     lead.setLastName(testLastName)
     lead.setCompany(testCompanyName)
 
