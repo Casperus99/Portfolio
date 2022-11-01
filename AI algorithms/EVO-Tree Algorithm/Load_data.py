@@ -75,40 +75,35 @@ ordinalFeaturesMappers = {
 
 dataHandler = DataHandler()
 dataHandler.loadDataFrom(datasetFileName)
-readyData = dataHandler.getEncodedData(ordinalFeaturesMappers)
-print(readyData)
+preparedData = dataHandler.getEncodedData(ordinalFeaturesMappers)
+
+X, y = preparedData[:, range(preparedData.shape[1]-1)], preparedData[:, preparedData.shape[1]-1]
 
 # dataHandler.dataset.hist(bins=25,figsize=(10,10))
 # plt.show()
 
 # print(dataHandler.dataset.isnull().values.any())
 
-# dataHandler.dataset
+kfold = KFold(10, shuffle=True)
+accs = []
 
+for i in range(5):
+    for train, test in kfold.split(X, y):
+        X_train, X_test = X[train], X[test]
+        y_train, y_test = y[train], y[test]
 
+        clf = DecisionTreeClassifier()
+        clf = clf.fit(X_train, y_train)
+        pred_y = clf.predict(X_test)
+        accs.append(metrics.accuracy_score(y_test, pred_y))
 
-# kfold = KFold(5, shuffle=True)
-# accs = []
-
-# for i in range(5):
-#     for train, test in kfold.split(readyData):
-#         train_x = readyData.loc[train][features]
-#         train_y = readyData.loc[train][classes]
-#         test_x = readyData.loc[test][features]
-#         test_y = readyData.loc[test][classes]
-        
-#         clf = DecisionTreeClassifier()
-#         clf = clf.fit(train_x, train_y)
-#         pred_y = clf.predict(test_x)
-#         accs.append(metrics.accuracy_score(test_y, pred_y))
-
-# print("mean accuracy", np.mean(accs))
-# print("standard deviation", np.std(accs))
+print("mean accuracy", np.mean(accs))
+print("standard deviation", np.std(accs))
 
 # dot_data = StringIO()
 # export_graphviz(clf, out_file=dot_data,  
 #                 filled=True, rounded=True,
-#                 special_characters=True,feature_names = features,class_names=classes)
+#                 special_characters=True)
 # graph = pydotplus.graph_from_dot_data(dot_data.getvalue())  
 # graph.write_png('tree.png')
 # Image(graph.create_png())
