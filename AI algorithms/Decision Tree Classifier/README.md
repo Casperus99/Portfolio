@@ -1,4 +1,4 @@
-# Decision Tree Clasificator
+# Decision Tree Classifier
 
 In the project below, I investigate the effectiveness of the decision tree algorithm and its modifications on an obesity dataset. The model is implemented in Python using the scikit-learn library.
 
