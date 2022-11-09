@@ -41,7 +41,7 @@ These issues has been already resolved by the authors. There are no missing valu
   Fig. 1. Balanced Distribution of data regarding the obesity levels category.
 </p>
 
-### Features corelation
+### Features correlation
 
 TO DO
 
