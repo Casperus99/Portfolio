@@ -30,6 +30,10 @@ The records are labeled with the class variable NObesity (Obesity Level), that a
 
 ## Data Preprocessing
 
+### Fixing synthetic labels
+
+Many records are created synthetically and so their classes. This means that some of these classes could be incorrect taking into account strict formula used for labelling. Therefore it is needed to recalculate them based on both weight and height of given record. To perform this simple formula in Excel was created.
+
 ### Missing and unbalanced data
 
 These issues has been already resolved by the authors. There are no missing values, and data is distribiuted rather equally (Fig. 1.) thanks to synthetic data.
@@ -41,11 +45,11 @@ These issues has been already resolved by the authors. There are no missing valu
   Fig. 1. Balanced Distribution of data regarding the obesity levels category.
 </p>
 
-### Features correlation
-
-TO DO
-
 ### Dealing with categorical data
+
+Since categorical features are present and used decision tree implementation does not handle that type of data they need to be encoded. To solve this issue scikit-learn ```OneHotEncoder``` and ```OrdinalEncoder``` classes were used. Unfortunately without AI or advanced dictionaries it is hard to automate separating ordinal from nominal data. Therefore it is required to manually provide names of all ordinal features and their possible categories in correct order. Then remaining categorical data will be treated as nominal i.e. encoded with one-hot encoding.
+
+### Features correlation with target
 
 TO DO
 
