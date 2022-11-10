@@ -53,9 +53,9 @@ Since categorical features are present and decision tree implementation used doe
 
 TO DO
 
-## Basic clasification tree performance
+## Classification
 
-### How decision tree works? (TO DO)
+### Basic implementation
 
 After preprocessing the following steps are performed to obtain efficiency of the given model:  
 
@@ -70,8 +70,8 @@ After preprocessing the following steps are performed to obtain efficiency of th
 Additionaly, Working with relatively small datasets like this one may lead to quite different results in the next runs. Therefore, these steps are repeated *n* times to generate more accuracy values thus more stable outcome.  
 
 Running program with *k* = 10 and *n* = 10 (100 trees) provided:  
-**mean accuracy** = 0.914  
-**standard deviation** = 0.018
+**Mean accuracy** = 0.914  
+**Standard deviation** = 0.018
 
 ## Model modifications performance
 
