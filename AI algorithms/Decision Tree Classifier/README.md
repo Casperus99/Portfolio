@@ -47,7 +47,7 @@ These issues has been already resolved by the authors. There are no missing valu
 
 ### Dealing with categorical data
 
-Since categorical features are present and used decision tree implementation does not handle that type of data they need to be encoded. To solve this issue scikit-learn ```OneHotEncoder``` and ```OrdinalEncoder``` classes were used. Unfortunately without AI or advanced dictionaries it is hard to automate separating ordinal from nominal data. Therefore it is required to manually provide names of all ordinal features and their possible categories in correct order. Then remaining categorical data will be treated as nominal i.e. encoded with one-hot encoding.
+Since categorical features are present and decision tree implementation used does not handle that type of data they need to be encoded. To solve this issue scikit-learn ```OneHotEncoder``` and ```OrdinalEncoder``` classes were used. Unfortunately without AI or advanced dictionaries it is hard to automate separating ordinal from nominal data. Therefore it is required to manually provide names of all ordinal features and their possible categories in correct order. Then remaining categorical data is treated as nominal i.e. encoded with one-hot encoding.
 
 ### Features correlation with target
 
@@ -55,7 +55,19 @@ TO DO
 
 ## Basic clasification tree performance
 
-TO DO
+### How decision tree works? (TO DO)
+
+After preprocessing the following steps are performed to obtain efficiency of the given model:  
+
+1. Split feature columns from target columns
+2. Divide the data into training and testing sets according to k-cross validation rules
+3. Train the tree using training set
+4. Generate predictions for testing records
+5. Compare predictions with expected values (calculate accuracy)
+6. Perform points 2-5 *k* times
+7. Calculate mean accuracy and standard devation
+
+Additionaly, Working with relatively small datasets like this one may lead to quite different results in the next runs. Therefore, these steps are repeated *n* times to generate more accuracy values thus more stable outcome.
 
 ## Model modifications performance
 
