@@ -67,7 +67,11 @@ After preprocessing the following steps are performed to obtain efficiency of th
 6. Perform points 2-5 *k* times
 7. Calculate mean accuracy and standard devation
 
-Additionaly, Working with relatively small datasets like this one may lead to quite different results in the next runs. Therefore, these steps are repeated *n* times to generate more accuracy values thus more stable outcome.
+Additionaly, Working with relatively small datasets like this one may lead to quite different results in the next runs. Therefore, these steps are repeated *n* times to generate more accuracy values thus more stable outcome.  
+
+Running program with *k* = 10 and *n* = 10 (100 trees) provided:  
+**mean accuracy** = 0.914  
+**standard deviation** = 0.018
 
 ## Model modifications performance
 
