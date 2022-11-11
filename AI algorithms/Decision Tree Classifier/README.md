@@ -73,7 +73,7 @@ Running program with *k* = 10 and *n* = 10 (100 trees) provided:
 **Mean accuracy** = 0.914  
 **Standard deviation** = 0.018
 
-### Optimizing Max Depth Size
+### Optimizing max depth size
 
 One way to optimize a decision tree is to limit its maximum depth. The impact of this action on the accuracy of the model is presented in the bar plot below.
 
@@ -83,6 +83,6 @@ One way to optimize a decision tree is to limit its maximum depth. The impact of
 
 As expected, the accuracy at the high maximum depth is high and decreases with decreasing depth. The reason for this is resignation from subsequent nodes that make important divisions. Stable model results above the maximum depth of 9 mean that deeper models either do not exist or do not perform better. Therefore, this coefficient should remain at this value.
 
-## Conclusions
+### Reducing attributes
 
 TO DO
