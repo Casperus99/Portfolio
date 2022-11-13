@@ -8,27 +8,32 @@ class DecisionTreeHandler:
         self.maxDepth = maxDepth
          
         self.accs = []
+        self.sizes = []
 
     def repeatKFoldsNTimes(self, dataset, kFolds, nTimes):
-        self.accs = []
         featureColumns, targetColumn = DecisionTreeHandler.featuresTargetColumnsSplit(dataset)
 
         for _ in range(nTimes):
-            self.accs.extend(self.performKFolds(kFolds, featureColumns, targetColumn))
+            accuracies, sizes = self.performKFolds(kFolds, featureColumns, targetColumn)
+            self.accs.extend(accuracies)
+            self.sizes.extend(sizes)
 
         return self.accs
 
     def performKFolds(self, k, featureColumns, targetColumn):
         accuracyList = []
+        sizeList = []
 
         for train, test in KFold(k, shuffle=True).split(featureColumns):
             X_train, X_test = featureColumns[train], featureColumns[test]
             y_train, y_test = targetColumn[train], targetColumn[test]
             trainedTree = DecisionTreeClassifier(max_depth=self.maxDepth).fit(X_train, y_train)
             acc = DecisionTreeHandler.testDecisionTree(trainedTree, X_test, y_test)
+            size = DecisionTreeHandler.getTreeSize(trainedTree)
             accuracyList.append(acc)
+            sizeList.append(size)
 
-        return accuracyList
+        return accuracyList, sizeList
 
     def featuresTargetColumnsSplit(dataSet):
         featureColumns, targetColumn = dataSet[:, range(dataSet.shape[1]-1)], dataSet[:, dataSet.shape[1]-1]
@@ -40,3 +45,6 @@ class DecisionTreeHandler:
         accuracy = metrics.accuracy_score(y_test, predictions)
 
         return accuracy
+
+    def getTreeSize(tree):
+        return tree.tree_.node_count
