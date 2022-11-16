@@ -91,3 +91,8 @@ Once one have found the settings of hyperparameters that generate a satisfactory
 
 *Weight* was the last feature that remained.   
 As you can see, the average accuracy of the models increases until the *Height* attribute is removed. Interestingly, this occurs despite the shrinkage of trees, which would suggest that these trees should be "dumber". The explanation for this phenomenon is most likely the **overfitting** of the original model. Without further features, the models are unable to find more detailed differences, so they do not generate further nodes. However, it seems that these detailed differences would only lead to overfitted models anyway. In that case, *Height* and *Weight* are enough to achieve the best model. It appears that these trees are unable to perceive any additional information from the other attributes.
+
+It is worth to note that model without these two features achieves:  
+**Mean accuracy** = 0.715    
+**Standard deviation** = 0.030  
+**Mean size** = 926.54  
