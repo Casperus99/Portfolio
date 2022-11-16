@@ -1,4 +1,4 @@
-# ENAS - Evolutionary Neural Architecture Search
+# Evolutionary Neural Architecture Search (ENAS)
 
 Created: 05/2022
 
