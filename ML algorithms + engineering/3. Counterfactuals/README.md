@@ -87,7 +87,6 @@ model = tf.keras.Sequential([
     tf.keras.layers.Flatten(input_shape=(28, 28)),
     tf.keras.layers.Dense(64, activation="relu"),
     tf.keras.layers.Dense(64, activation="relu"),
-    tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(10, activation="softmax")
 ])
 ```
