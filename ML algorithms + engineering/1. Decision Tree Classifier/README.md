@@ -34,7 +34,7 @@ The records are labeled with the class variable NObesity (Obesity Level), that a
 
 Many records are created synthetically and so their classes. This means that some of these classes could be incorrect taking into account strict formula used for labelling. Therefore it is needed to recalculate them based on both weight and height of given record. To perform this simple formula in Excel was created.
 
-### Missing and unbalanced data
+### Missing and imbalanced data
 
 These issues has been already resolved by the authors. There are no missing values, and data is distribiuted rather equally (Fig. 1.) thanks to synthetic data.
 
