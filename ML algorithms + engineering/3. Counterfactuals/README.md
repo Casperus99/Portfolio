@@ -189,4 +189,4 @@ plt.show()
     
 
 
-These pictures show how unstable the network is, despite its high accuracy. The new input does not look like a sneaker at all. It seems that it's enough to add some random noise for model to fail. 
+These pictures show how unstable the network is, despite its high accuracy. The new input does not look like a sneaker at all. It seems that it's enough to add some random noise to the input for model to fail. 
