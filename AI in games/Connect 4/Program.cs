@@ -1,7 +1,10 @@
-﻿internal class Program
+﻿using Connect_4;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Board myBoard = new();
+        myBoard.PrintBoard();
     }
 }
