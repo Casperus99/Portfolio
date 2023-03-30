@@ -11,7 +11,7 @@ namespace Connect_4
         public
         Board Board;
         RandomPlayer Player1;
-        RandomPlayer Player2;
+        HumanPlayer Player2;
 
         public Game()
         {
@@ -28,9 +28,6 @@ namespace Connect_4
             {
                 move = Player1.MakeMove(Board.Fields);
                 Board.UpdateBoard(move, 'X');
-                Board.PrintBoard();
-                Console.ReadKey();
-                Console.Clear();
                 if (Win('X'))
                 {
                     Console.WriteLine("Player 1 wins!");
@@ -39,9 +36,6 @@ namespace Connect_4
 
                 move = Player2.MakeMove(Board.Fields);
                 Board.UpdateBoard(move, 'O');
-                Board.PrintBoard();
-                Console.ReadKey();
-                Console.Clear();
                 if (Win('O'))
                 {
                     Console.WriteLine("Player 2 wins!");
