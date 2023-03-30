@@ -38,6 +38,7 @@ namespace Connect_4
                 }
                 Console.WriteLine(row);
             }
+            Console.WriteLine(" 1 2 3 4 5 6 7");
         }
 
         public void UpdateBoard(int column, char colour)
