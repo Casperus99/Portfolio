@@ -4,7 +4,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Board myBoard = new();
-        myBoard.PrintBoard();
+        Game Game = new();
+        Game.Play();
     }
 }

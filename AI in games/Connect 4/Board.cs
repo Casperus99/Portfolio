@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Connect_4
 {
-    class Board
+    internal class Board
     {
-        public string[,] Fields { get; set; }
+        public char[,] Fields { get; set; }
 
         public Board()
         {
-            Fields = new string[7, 6];
+            Fields = new char[7, 6];
             ResetBoard();
         }
 
@@ -22,7 +22,7 @@ namespace Connect_4
             {
                 for (int y = 0; y <= 5; y++)
                 {
-                    Fields[x, y] = "O";
+                    Fields[x, y] = '|';
                 }
             }
         }
@@ -37,6 +37,18 @@ namespace Connect_4
                     row += Fields[x, y] + " ";
                 }
                 Console.WriteLine(row);
+            }
+        }
+
+        public void UpdateBoard(int column, char colour)
+        {
+            for (int y = 0; y <= 5; y++)
+            {
+                if (Fields[column, y] == '|')
+                {
+                    Fields[column, y] = colour;
+                    break;
+                }
             }
         }
     }
