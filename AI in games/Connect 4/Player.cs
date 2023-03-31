@@ -8,6 +8,6 @@ namespace Connect_4
 {
     abstract internal class Player
     {
-        abstract public int MakeMove(char[,] Fields);
+        abstract public int MakeMove(Board board);
     }
 }

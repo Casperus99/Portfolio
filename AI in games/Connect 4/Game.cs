@@ -16,27 +16,23 @@ namespace Connect_4
         public Game()
         {
             Board = new();
-            Player1 = new();
-            Player2 = new();
+            Player1 = new(1);
+            Player2 = new(-1);
         }
 
         public void Play()
         {
-            int move;
-
             while (true)
             {
-                move = Player1.MakeMove(Board.Fields);
-                Board.UpdateBoard(move, 'X');
-                if (Win('X'))
+                Player1.MakeMove(Board);
+                if (Win(1))
                 {
                     Console.WriteLine("Player 1 wins!");
                     break;
                 }
 
-                move = Player2.MakeMove(Board.Fields);
-                Board.UpdateBoard(move, 'O');
-                if (Win('O'))
+                Player2.MakeMove(Board);
+                if (Win(-1))
                 {
                     Console.WriteLine("Player 2 wins!");
                     break;
@@ -54,7 +50,7 @@ namespace Connect_4
         {
             for (int x = 0; x <= 6; x++)
             {
-                if (Board.Fields[x, 5] == '|')
+                if (Board.Fields[x, 5] == 0)
                 {
                     return true;
                 }
@@ -62,7 +58,7 @@ namespace Connect_4
             return false;
         }
 
-        private bool Win(char colour)
+        private bool Win(int colour)
         {
             if (VertCheck(colour) || HorizCheck(colour) || SlashCheck(colour) || BackslashCheck(colour))
             {
@@ -71,7 +67,7 @@ namespace Connect_4
             return false;
         }
 
-        private bool VertCheck(char colour)
+        private bool VertCheck(int colour)
         {
             bool possibleWin;
             for (int x = 0; x <= 6; x++)
@@ -96,7 +92,7 @@ namespace Connect_4
             return false;
         }
 
-        private bool HorizCheck(char colour)
+        private bool HorizCheck(int colour)
         {
             bool possibleWin;
             for (int y = 0; y <= 5; y++)
@@ -121,7 +117,7 @@ namespace Connect_4
             return false;
         }
 
-        private bool SlashCheck(char colour)
+        private bool SlashCheck(int colour)
         {
             bool possibleWin;
             for (int x = 0; x <= 3; x++)
@@ -146,7 +142,7 @@ namespace Connect_4
             return false;
         }
 
-        private bool BackslashCheck(char colour)
+        private bool BackslashCheck(int colour)
         {
             bool possibleWin;
             for (int x = 3; x <= 6; x++)

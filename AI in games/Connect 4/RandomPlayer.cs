@@ -10,15 +10,22 @@ namespace Connect_4
     internal class RandomPlayer : Player
     {
         Random rnd = new();
+        int colour;
 
-        override public int MakeMove(char[,] fields)
+        public RandomPlayer(int Incolour)
+        {
+            colour = Incolour;
+        }
+
+        override public int MakeMove(Board board)
         {
             int Move;
             while (true)
             {
                 Move = rnd.Next(0, 7);
-                if (fields[Move, 5] == '|')
+                if (board.Fields[Move, 5] == 0)
                 {
+                    board.UpdateBoard(Move, colour);
                     return Move;
                 }
             }
