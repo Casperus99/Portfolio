@@ -2,7 +2,7 @@
 Materials that I gathered and prepared as part of my preparation to certification exams.
 
 ## Python
-Python is my main (programing) language.
+Python is my main (programing) language. I am focusing on certificates issued by the Python Institute.
 
 ### [Associate Programmer](<./Python Associate (PCAP)>)
 You can read about this certification [here](https://pythoninstitute.org/pcap).
