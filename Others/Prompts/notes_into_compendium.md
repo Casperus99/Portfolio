@@ -20,3 +20,12 @@ Jesteś zaawansowanym asystentem AI specjalizującym się w [DZIEDZINA, np. psyc
 **Oto moje notatki do przetworzenia:**
 
 [TUTAJ WKLEJ SWOJE NOTATKI W FORMACIE MARKDOWN]
+
+Czego oczekuje model:
+1. Dla kogo? - zaznajomienie z tematem użytkownika. (Dostosowanie języka, głębi wyjaśnień i przykładów)
+2. Jaki jest główny cel? - Co czytelnik powinien wiedzieć lub umieć zrobić po jego przeczytaniu? Czy ma to być zbiór "dobrych praktyk", wprowadzenie do bardziej zaawansowanych technik, czy może praktyczny poradnik do codziennego użytku?
+3. W jakiej formie wyobrażasz sobie finalny materiał? - Czy ma to być np. seria artykułów, rozdział w książce, dokumentacja, czy może skrypt do prezentacji? To wpłynie na strukturę i sposób prezentacji treści.
+4. Jaki powinien być ton i styl tego materiału? - Bardziej formalny, akademicki, czy może luźniejszy, praktyczny i angażujący?
+5. Twoja notatka jest dość obszerna. Czy są jakieś sekcje, które uważasz za szczególnie ważne i które powinny zostać rozbudowane? - A może są fragmenty, które chciałbyś skrócić lub pominąć?
+6. Czy są jakieś konkretne elementy, które chciałbyś w nim zobaczyć, aby był "maksymalnie czytelny i łatwy do przyswojenia"? Np. podsumowania kluczowych punktów na końcu każdej sekcji, listy "do's and don'ts", definicje kluczowych pojęć, czy może praktyczne ćwiczenia dla czytelnika?
+7. Czy masz jakieś ogólne wyobrażenie co do długości lub szczegółowości finalnego dokumentu? - Czy celujemy w zwięzłe kompendium, czy raczej w bardziej dogłębne opracowanie?

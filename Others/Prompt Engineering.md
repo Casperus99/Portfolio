@@ -145,7 +145,8 @@ E.x.
 -   Look for another specific and well-known methods
 
 ### AI-ASSISTED QUESTIONING
-It's another way of solving real-life problems with AI. This approach focuses on encouraging the AI to ask necessary questions to better understand your problem and provide more accurate responses. You have to ensure that AI asks relevant questions.
+**I think this is very important and efficient technique. It's supposed to be somewhere on the beginning of techniques. And it should be described more and have more examples and use cases**
+It's another way of solving real-life problems with AI. This approach focuses on encouraging the AI to ask necessary questions to better understand your problem and provide more accurate responses. You have to ensure that AI asks relevant questions. 
 
 1.  Identify the problem - describe in detail the problem you are trying to solve. Be as specific as possible.
 2.  Request questions - prompt the AI to come up with a list of questions to better understand the problem.
