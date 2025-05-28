@@ -73,9 +73,11 @@
 - **Uprzedzenia:** Najczęściej nieświadome zmotywowanie AI do myślenia w konkretny, subiektywny sposób.
     - Są znane przypadki, kiedy ludzie byli w stanie przekonać AI, że 2+2 to nie jest 4. Oznacza to, że do specyficznego zdania w bardziej niejednoznacznych sytuacjach także można go przekonać.
     - Jeśli z rozmów wynika, że jesteśmy wielbicielami liberalnego podejścia do gospodarki, to nawet gdy się spytamy neutralnie "jak byś rozwiązał problem X? Liberalnie czy konserwatywnie?", to model przez historię czatu może być wystarczająco uprzedzony, aby na siłę faworyzować opcję - z jego punktu widzenia - bardziej satysfakcjonującą użytkownika. A użytkownik wtedy sam bardziej się uprzedza, skoro "nawet AI przyznało mu rację".
+    - Jeśli zapytasz się czy przedstawiony pomysł jest dobry to model będzie bardziej skłonny rozpatrywania go pozytywnie. Czasem się tak zachowuje nawet jeśli zapytasz się neutralnie: "co myślisz o tym pomyśle?".
     - Każdy model trenuje na jakimś zbiorze danych. Jeśli ten zbiór jest generalnie uprzedzony, odbije się to też na zachowaniu modelu.
     - **Rozwiązania**
         - Zachowanie jak największej obiektywności wobec modelu. Bezpośrednie przypominanie mu: ```Zachowaj obiektywność. Nie sugeruj się moimi przekonaniami```.
+        - Dodatkowe poinstruowanie go: ```Rozpatrz wady i zalety mojego punktu widzenia/pomysłu nawet jeśli bardzo bym chciał by on był nieskazitelny```. Może warto wtedy spróbować tak się zachowywać jakby to miał być najgorszy pomysł i zaznaczać, że ma pewnie same złe cechy. Jest spora szansa, że model będzie dopiero wtedy wystarczająco krytyczny.
         - W przypadku używania nieoficjalnych modeli, weryfikować zbiór treningowy.
 
 ### **Podstawowe Zastosowania**
