@@ -1,0 +1,1 @@
+"C:\\Users\\kanowa\\GIT\\Portfolio\\AI Engineering\\Flashcards"
