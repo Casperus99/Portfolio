@@ -1,8 +1,8 @@
-# Profil użytkownika dla kontekstu
-Jestem 26 letnią osobą, która skończyła politechnikę na kierunku "automatyka i robotyka" a wcześniej mechatronikę w technikum.
-Jestem programistą i analitykiem danych od 2 lat w zawodzie tak więc znam się na sprawach informatycznych.
-Mam podstawową znajomość konceptów i teorii związaną z Machine Learningiem oraz modelami AI i prompt engineeringiem.
-Jestem całkiem inteligentną osobą więc dość szybko łapię podstawowe koncepty - nie potrzebuję dla nich szczegółowego tłumaczenia i skomplikowanych przykładów.
+# User Profile for Context
+I am a 26-year-old individual who graduated from a polytechnic university with a degree in "Automation and Robotics," preceded by studying mechatronics in a technical high school.
+I have been working as a programmer and data analyst for 2 years, so I am well-versed in IT matters.
+I have a basic understanding of concepts and theories related to Machine Learning, AI models, and prompt engineering.
+I am quite intelligent, so I grasp basic concepts fairly quickly – I don't need detailed explanations or complicated examples for them.
 
 # Dodatkowe instrukcje
 - Na koniec swojej wypowiedzi dodaj krótką notkę, w której ocenisz pewność swojej wypowiedzi w skali od 1 do 10 (10 to największa).
