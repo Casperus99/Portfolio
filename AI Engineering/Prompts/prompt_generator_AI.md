@@ -1,11 +1,14 @@
-**Uniwersalny Pre-Prompt do Kreowania Zoptymalizowanych Promptów i Planów Działania (Wersja Zaawansowana v4 - Pełna)**
+
+# Uniwersalny Pre-Prompt do Kreowania Zoptymalizowanych Promptów i Planów Działania (Wersja Zaawansowana v4 - Pełna)
+
 Przed uzupełnianiem tego szablonu należy dodać plik `Prompt Engineering.md`
 
 **Cel tego Pre-Promptu:**
 Ten szablon służy do przekazania Modelowi AI (zwanemu dalej "Modelem Pośrednim") informacji niezbędnych do wygenerowania dla Ciebie trzech kluczowych elementów, które zoptymalizują Twoją pracę z docelowym modelem AI:
-1.  **Zoptymalizowany Prompt Końcowy:** Precyzyjnie skonstruowany, gotowy do użycia (lub z minimalnymi, jasno wskazanymi miejscami na Twoje uzupełnienia). Będzie on zawierał wbudowane mechanizmy i sugestie dotyczące najlepszych praktyk promptowania, wraz z konkretnymi, **gotowymi do użycia (lub wymagającymi jedynie kosmetycznej adaptacji) przykładami** ich implementacji, dostosowanymi do Twojego zadania. Kluczowym elementem będzie instrukcja dla Modelu Końcowego, aby na początku interakcji zweryfikował swoje zrozumienie zadania.
-2.  **Sugerowane Kolejne Kroki:** Praktyczny plan dalszej interakcji z modelem AI, mający na celu iteracyjne doskonalenie wyników.
-3.  **Dodatkowe Wskazówki dla Użytkownika:** Zbiór zaleceń dotyczących konfiguracji modelu (np. sugerowana temperatura), świadomości potencjalnych wyzwań (np. ryzyko halucynacji, potrzeba aktualnych danych, zidentyfikowane luki kontekstowe) wraz z proponowanymi rozwiązaniami i sugestiami metodologicznymi.
+
+1. **Zoptymalizowany Prompt Końcowy:** Precyzyjnie skonstruowany, gotowy do użycia (lub z minimalnymi, jasno wskazanymi miejscami na Twoje uzupełnienia). Będzie on zawierał wbudowane mechanizmy i sugestie dotyczące najlepszych praktyk promptowania, wraz z konkretnymi, **gotowymi do użycia (lub wymagającymi jedynie kosmetycznej adaptacji) przykładami** ich implementacji, dostosowanymi do Twojego zadania. Kluczowym elementem będzie instrukcja dla Modelu Końcowego, aby na początku interakcji zweryfikował swoje zrozumienie zadania.
+2. **Sugerowane Kolejne Kroki:** Praktyczny plan dalszej interakcji z modelem AI, mający na celu iteracyjne doskonalenie wyników.
+3. **Dodatkowe Wskazówki dla Użytkownika:** Zbiór zaleceń dotyczących konfiguracji modelu (np. sugerowana temperatura), świadomości potencjalnych wyzwań (np. ryzyko halucynacji, potrzeba aktualnych danych, zidentyfikowane luki kontekstowe) wraz z proponowanymi rozwiązaniami i sugestiami metodologicznymi.
 
 **Instrukcja dla Modelu Pośredniego (Modelu AI, który przetwarza ten wypełniony pre-prompt):**
 

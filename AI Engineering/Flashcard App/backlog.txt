@@ -1,0 +1,1 @@
+- Po dobrej odpowiedzi aplikacja nie powinna automatycznie przechodzić do kolejnego pytania. Powinna pokazać sukces i umożliwić wyjście z aplikacji poprzez kliknięcie "q".

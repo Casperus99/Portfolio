@@ -1,0 +1,23 @@
+{
+  "srs_intervals": {
+    "0": 0,    
+    "1": 1,    
+    "2": 2,    
+    "3": 4,    
+    "4": 7,    
+    "5": 12,   
+    "6": 20    
+  },
+  "ai_settings": {
+    "api_key": "AIzaSyBB0I1r1iDRkwFwiW27UASz9YKTBM-k50Y",
+    "model_name": "gemini-1.5-flash"
+  },
+  "flashcards_directory": "flashcards/",
+  "logging_settings": {
+    "log_level": "INFO",
+    "log_to_console": false,
+    "log_to_file": true,
+    "log_file_path": "app.log",
+    "clear_log_on_start": true
+  }
+}
