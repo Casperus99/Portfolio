@@ -1,7 +1,8 @@
+# Relative path: src/ui/terminal_ui.py
 import logging
 import os
 import sys
-from typing import Dict
+from typing import Dict, Optional # Added Optional
 from src.data.flashcard import Flashcard
 
 # Platform-specific imports for single character input
@@ -48,12 +49,12 @@ class TerminalUI:
         """
         mastery_levels_str = "|".join(str(mastery_distribution.get(level, 0))
                                       for level in sorted(mastery_distribution.keys()))
-        min_level = min(mastery_distribution.keys()) if mastery_distribution else 0
-        max_level = max(mastery_distribution.keys()) if mastery_distribution else 6
+        min_level_key = min(mastery_distribution.keys()) if mastery_distribution else 0
+        max_level_key = max(mastery_distribution.keys()) if mastery_distribution else 6 # Default max level
 
         print("-" * 50)
         print(f"Dostępnych pytań w tym dniu: {available_count}")
-        print(f"Ogólny stan wiedzy (poziomy {min_level}-{max_level}): {mastery_levels_str}")
+        print(f"Ogólny stan wiedzy (poziomy {min_level_key}-{max_level_key}): {mastery_levels_str}")
         print("-" * 50)
         logger.debug(f"Displayed stats: Available={available_count}, Distribution={mastery_distribution}")
 
@@ -65,9 +66,12 @@ class TerminalUI:
             flashcard (Flashcard): The Flashcard object to display.
         """
         print(f"{flashcard.category} - {flashcard.deck}, Poziom znajomości: {flashcard.mastery_level}")
-        print() # Empty line after category/deck/level
-        print(f"{flashcard.front}") # Removed "Pytanie:" prefix
-        print() # Empty line after question
+        # Display evaluation hint if present, for user awareness or debugging
+        # if flashcard.evaluation_hint:
+        # print(f"Wskazówka dla AI: {flashcard.evaluation_hint}") # Potentially for debugging, not for user
+        print() 
+        print(f"{flashcard.front}") 
+        print() 
         logger.info(f"Displayed question for Flashcard ID: {flashcard.id}")
 
     def get_user_input(self, prompt: str = "") -> str:
@@ -96,9 +100,8 @@ class TerminalUI:
             return self.EXIT_KEY
         except Exception as e:
             logger.error(f"An unexpected error occurred while getting user input: {e}")
-            return self.EXIT_KEY # Fallback to exit
+            return self.EXIT_KEY 
 
-    # --- MODIFIED START ---
     def display_user_answer(self, user_answer: str) -> None:
         """
         Displays the user's previously entered answer.
@@ -106,13 +109,12 @@ class TerminalUI:
         """
         print(f"Twoja odpowiedź: {user_answer}")
         logger.debug(f"Re-displayed user answer: '{user_answer}'")
-    # --- MODIFIED END ---
 
     def display_correct_answer_feedback(self) -> None:
         """
         Displays feedback for a correct answer in the specified format.
         """
-        print("\n^^^   DOBRZE   ^^^") # Changed to new format
+        print("\n^^^   DOBRZE   ^^^") 
         logger.info("Displayed correct answer feedback.")
 
     def display_incorrect_feedback_short(self) -> None:
@@ -121,6 +123,16 @@ class TerminalUI:
         """
         print("\n###   ŹLE   ###")
         logger.info("Displayed short incorrect answer feedback.")
+
+    def display_ai_explanation(self, explanation: str) -> None:
+        """
+        Displays an explanation provided by the AI for an incorrect answer.
+
+        Args:
+            explanation (str): The explanation text from the AI.
+        """
+        print(f"\nWyjaśnienie AI: {explanation}")
+        logger.info(f"Displayed AI explanation: '{explanation}'")
 
     def display_correct_answer_only(self, correct_answer: str) -> None:
         """
@@ -142,33 +154,39 @@ class TerminalUI:
             str: The key pressed by the user. Returns EXIT_KEY if the user
                  enters the exit key or an interrupt occurs.
         """
-        print(prompt, end='', flush=True) # Print prompt without newline and flush it
+        print(prompt, end='', flush=True) 
 
         key_pressed = ''
         try:
-            if os.name == 'nt': # Windows
+            if os.name == 'nt': 
                 key_pressed_bytes = msvcrt.getch()
-                key_pressed = key_pressed_bytes.decode('utf-8') # Decode bytes to string
-            else: # Unix-like
+                try:
+                    key_pressed = key_pressed_bytes.decode('utf-8', errors='ignore') 
+                except UnicodeDecodeError:
+                    key_pressed = key_pressed_bytes.decode('cp1250', errors='ignore') # Common Polish encoding on Windows
+                    logger.warning(f"Decoded key press using cp1250 after utf-8 failed: {key_pressed_bytes}")
+
+            else: 
                 fd = sys.stdin.fileno()
                 old_settings = termios.tcgetattr(fd)
                 try:
-                    tty.setraw(fd) # Set terminal to raw mode
-                    key_pressed = sys.stdin.read(1) # Read a single character
+                    tty.setraw(fd) 
+                    key_pressed = sys.stdin.read(1) 
                 finally:
-                    termios.tcsetattr(fd, termios.TCSADRAIN, old_settings) # Restore terminal settings
+                    termios.tcsetattr(fd, termios.TCSADRAIN, old_settings) 
 
-            # Print the pressed key for feedback, then a newline
-            print(key_pressed)
+            print(key_pressed if key_pressed.isprintable() else '') # Print only printable chars, then newline
             
             if key_pressed.lower() == self.EXIT_KEY:
                 logger.debug(f"User pressed exit key '{self.EXIT_KEY}' during wait.")
             return key_pressed
         except (EOFError, KeyboardInterrupt):
             logger.warning("Interrupt detected during key press wait. Exiting.")
+            print() # Ensure prompt is not left hanging
             return self.EXIT_KEY
         except Exception as e:
             logger.error(f"An unexpected error occurred while waiting for key press: {e}")
+            print() # Ensure prompt is not left hanging
             return self.EXIT_KEY
 
     def display_message(self, message: str) -> None:
@@ -181,37 +199,36 @@ class TerminalUI:
         print(f"\n{message}\n")
         logger.info(f"Displayed message: '{message}'")
 
-# Example usage (for testing, will be called from main.py)
+# Example usage
 if __name__ == '__main__':
     from src.core.logger_setup import setup_logging
     from datetime import date
     from uuid import uuid4
     from pathlib import Path
-    import time # For test delays
+    import time 
 
-    # Configure logging for the test block (independent of app's config)
-    setup_logging({
-        'log_level': 'DEBUG',
-        'log_to_console': True,
-        'log_to_file': False,
-        'log_file_path': 'test_ui.log',
-        'clear_log_on_start': True
-    })
+    try:
+        setup_logging({
+            'log_level': 'DEBUG',
+            'log_to_console': True,
+            'log_to_file': False,
+            'log_file_path': 'test_ui.log',
+            'clear_log_on_start': True
+        })
+    except TypeError:
+        setup_logging('DEBUG')
+        
     ui = TerminalUI()
 
-    # Test clear_screen (might flash quickly)
-    print("Clearing screen in 2 seconds...")
-    time.sleep(2)
+    print("Clearing screen in 1 seconds...")
+    time.sleep(1)
     ui.clear_screen()
     print("Screen cleared.")
 
-    # Test display_stats
     print("\n--- Testing display_stats ---")
     mock_mastery_distribution = {0: 10, 1: 5, 2: 3, 3: 1, 4: 0, 5: 2, 6: 1}
     ui.display_stats(available_count=15, mastery_distribution=mock_mastery_distribution)
 
-    # Test display_question
-    print("\n--- Testing display_question ---")
     mock_flashcard = Flashcard(
         front="What is the capital of Poland?",
         back="Warsaw",
@@ -222,53 +239,43 @@ if __name__ == '__main__':
         category="Geography",
         deck="Europe"
     )
+    print("\n--- Testing display_question ---")
     ui.display_question(mock_flashcard)
 
-    # Test get_user_input
     print("\n--- Testing get_user_input (type 'q' to test exit) ---")
     user_answer_test = ui.get_user_input("Twoja odpowiedź: ")
     print(f"User entered: '{user_answer_test}'")
     if user_answer_test.lower() == ui.EXIT_KEY:
         print("User chose to exit.")
 
-    # Test new incorrect feedback flow
-    print("\n--- Testing incorrect feedback flow ---")
-    user_answer_mock = "Londyn"
-    correct_answer_mock = "Warszawa"
+    print("\n--- Testing incorrect feedback flow with AI explanation ---")
+    user_answer_mock = "Krakow"
+    correct_answer_mock = "Warsaw"
+    ai_explanation_mock = "Krakow is a major city in Poland, but the capital is Warsaw."
 
-    ui.clear_screen() # Simulate clear before re-displaying context
-    ui.display_stats(14, {0: 11, 1: 4, 2: 3, 3: 1, 4: 0, 5: 2, 6: 1}) # Updated stats
-    ui.display_question(mock_flashcard) # Re-display question
-    ui.display_user_answer(user_answer_mock) # Re-display user's answer
+    ui.clear_screen() 
+    ui.display_stats(14, {0: 11, 1: 4, 2: 3, 3: 1, 4: 0, 5: 2, 6: 1}) 
+    ui.display_question(mock_flashcard) 
+    ui.display_user_answer(user_answer_mock) 
 
-    ui.display_incorrect_feedback_short() # First feedback: "###   ŹLE   ###"
-    
-    print("\n(Simulating wait for key press after 'ŹLE.')")
-    _ = ui.wait_for_key_press(prompt="Press any key to show correct answer (mock)...") # Simulate user pressing a key
-    
-    ui.display_correct_answer_only(correct_answer_mock) # Show correct answer
+    ui.display_incorrect_feedback_short() 
+    ui.display_ai_explanation(ai_explanation_mock) # New call
+    ui.display_correct_answer_only(correct_answer_mock) 
+    print()
+    _ = ui.wait_for_key_press(prompt="Press any key to continue mock test...") 
 
-    print() # Add empty line before the next wait prompt as requested
-    print("(Simulating second wait for key press after correct answer)")
-    _ = ui.wait_for_key_press(prompt="Press any key to continue mock test...") # Simulate user pressing a key
-
-    # Test correct feedback flow
     print("\n--- Testing correct feedback flow ---")
     user_answer_mock_correct = "Warsaw"
-    ui.clear_screen() # Simulate clear before re-displaying context
-    ui.display_stats(13, {0: 10, 1: 5, 2: 3, 3: 1, 4: 0, 5: 2, 6: 1}) # Updated stats
-    ui.display_question(mock_flashcard) # Re-display question
-    ui.display_user_answer(user_answer_mock_correct) # Re-display user's answer
+    ui.clear_screen() 
+    ui.display_stats(13, {0: 10, 1: 5, 2: 3, 3: 1, 4: 0, 5: 2, 6: 1}) 
+    ui.display_question(mock_flashcard) 
+    ui.display_user_answer(user_answer_mock_correct) 
 
-    ui.display_correct_answer_feedback() # Show "^^^ DOBRZE ^^^"
-    ui.display_correct_answer_only("Warsaw") # Show correct answer
-    
-    print() # Add empty line before the next wait prompt
-    print("(Simulating wait for key press after 'DOBRZE' and correct answer)")
+    ui.display_correct_answer_feedback() 
+    ui.display_correct_answer_only("Warsaw") 
+    print() 
     _ = ui.wait_for_key_press(prompt="Press any key to continue mock test...")
 
-
-    # Test display_message
     print("\n--- Testing display_message ---")
     ui.display_message("Gratulacje! Na dziś nie ma więcej pytań do powtórki.")
 

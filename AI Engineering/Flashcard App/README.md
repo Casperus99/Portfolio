@@ -9,13 +9,14 @@ The "Flashcards SRS" application is designed to facilitate learning and knowledg
 ### 1.2. Core Features
 
 *   **Interactive Quiz:** Presents open-ended questions to the user, with answers evaluated by an AI model.
+*   **AI-Powered Feedback:** For incorrect answers, the AI can provide a brief explanation of why the answer was wrong.
 *   **Spaced Repetition System (SRS):** Dynamically schedules flashcard reviews based on historical performance and current mastery level.
 *   **Progress Tracking:**
     *   Maintains an individual mastery level for each flashcard (configurable, typically 0-6).
     *   Records the date of the last answer for each flashcard.
     *   Displays a summary of overall knowledge distribution by mastery level.
     *   Informs the user of the number of flashcards due for review on the current day.
-*   **Flashcard Management:** Stores flashcard data (question, answer, correct answer, mastery level, last answer date) in JSON files.
+*   **Flashcard Management:** Stores flashcard data (question, answer, correct answer, mastery level, last answer date, optional evaluation hint) in JSON files.
 *   **Data Persistence:** User progress is saved after each answered flashcard.
 *   **Simple User Interface:** Operated via keyboard input in a terminal environment.
 
@@ -80,6 +81,11 @@ Upon launching, the terminal interface displays:
     *   The application waits for any key press (or `q` to exit).
 *   **Incorrect Answer:**
     *   The message `###   ŹLE   ###` is displayed.
+    *   An optional explanation from the AI may be shown:
+        ```
+        Wyjaśnienie AI:
+        {AI-generated explanation text}
+        ```
     *   The correct answer is shown:
         ```
         Poprawna odpowiedź:
@@ -124,7 +130,8 @@ Flashcards are stored in JSON files. Each file contains a list of flashcard obje
   "front": "Question text?",
   "back": "Answer text.",
   "mastery_level": 3,
-  "last_answer_date": "2025-03-25"
+  "last_answer_date": "2025-03-25",
+  "evaluation_hint": "Optional hint for the AI evaluator, e.g., 'Be strict with spelling.'"
 }
 ```
 
@@ -133,6 +140,7 @@ Flashcards are stored in JSON files. Each file contains a list of flashcard obje
 *   **`back`**: (String) The correct answer.
 *   **`mastery_level`**: (Integer) The current mastery level. Defaults to 0 if missing or invalid.
 *   **`last_answer_date`**: (String "YYYY-MM-DD" or `null`) The date of the last review. `null` if never answered.
+*   **`evaluation_hint`**: (String, Optional) An optional hint passed to the AI model to guide its evaluation process. If not provided or `null`, it's omitted.
 
 ### 4.2. Flashcard Loading
 
@@ -142,7 +150,7 @@ Flashcards are stored in JSON files. Each file contains a list of flashcard obje
 
 ### 4.3. Data Persistence
 
-*   Changes to a flashcard's `mastery_level` and `last_answer_date` are saved back to its original JSON file after each answer is processed.
+*   Changes to a flashcard's `mastery_level`, `last_answer_date`, and `evaluation_hint` (if modified programmatically, though typically static) are saved back to its original JSON file after each answer is processed.
 
 ## 5. Configuration
 
@@ -226,16 +234,16 @@ The application is structured into several distinct layers, each with a specific
 
 *   **`flashcard.py`**:
     *   **Class:** `Flashcard` (dataclass)
-    *   **Responsibility (SRP):** Represents a single flashcard, encapsulating its attributes (question, answer, mastery level, etc.) and metadata (source file, category, deck).
-    *   **Key Attributes:** `id` (UUID), `front`, `back`, `mastery_level`, `last_answer_date`, `category`, `deck`, `source_file_path`.
+    *   **Responsibility (SRP):** Represents a single flashcard, encapsulating its attributes (question, answer, mastery level, etc.) and metadata (source file, category, deck, evaluation hint).
+    *   **Key Attributes:** `id` (UUID), `front`, `back`, `mastery_level`, `last_answer_date`, `category`, `deck`, `source_file_path`, `evaluation_hint` (Optional[str]).
     *   **Key Methods:**
-        *   `from_dict(cls, data: dict, source_file_path: Path, base_flashcards_dir: Path) -> 'Flashcard'`: Factory method to create a `Flashcard` instance from a dictionary (e.g., loaded from JSON), performing validation and deriving category/deck.
-        *   `to_dict() -> dict`: Converts the `Flashcard` instance back to a dictionary suitable for JSON serialization (excluding derived metadata).
+        *   `from_dict(cls, data: dict, source_file_path: Path, base_flashcards_dir: Path) -> 'Flashcard'`: Factory method to create a `Flashcard` instance from a dictionary (e.g., loaded from JSON), performing validation and deriving category/deck, and loading `evaluation_hint`.
+        *   `to_dict() -> dict`: Converts the `Flashcard` instance back to a dictionary suitable for JSON serialization (excluding derived metadata, includes `evaluation_hint` if present).
 *   **`flashcard_repository.py`**:
     *   **Class:** `FlashcardRepository`
     *   **Responsibility (SRP):** Handles all file I/O operations for flashcards. It is responsible for reading flashcards from JSON files and writing them back.
     *   **Key Methods:**
-        *   `load_flashcards_from_directory(directory_path: Path) -> List[Flashcard]`: Recursively scans the specified directory for `.json` files, parses them, and creates `Flashcard` objects. Handles missing IDs by generating UUIDs and populates `source_file_path`, `category`, and `deck` for each card.
+        *   `load_flashcards_from_directory(directory_path: Path) -> List[Flashcard]`: Recursively scans the specified directory for `.json` files, parses them, and creates `Flashcard` objects. Handles missing IDs by generating UUIDs and populates `source_file_path`, `category`, `deck`, and `evaluation_hint` for each card.
         *   `save_flashcards(flashcards: List[Flashcard]) -> None`: Saves a list of `Flashcard` objects back to their respective original JSON files. It groups flashcards by `source_file_path` before writing.
     *   **Interaction:** Used by `FlashcardManager` to delegate persistence operations.
 *   **`flashcard_manager.py`**:
@@ -264,18 +272,22 @@ The application is structured into several distinct layers, each with a specific
 
 ### 7.5. AI Integration Layer (`src/ai/`)
 
+*   **`evaluation_result.py`**:
+    *   **Class:** `EvaluationResult` (dataclass)
+    *   **Responsibility (SRP):** Represents the structured result from an AI evaluation, including correctness and an optional explanation.
+    *   **Key Attributes:** `is_correct` (bool), `explanation` (Optional[str]).
 *   **`ai_client_interface.py`**:
     *   **Class:** `AIClientInterface` (Abstract Base Class)
     *   **Responsibility (SRP):** Defines a common interface for all AI clients. This promotes loose coupling and allows for easy swapping of AI providers.
     *   **Key Abstract Method:**
-        *   `evaluate_answer(question_front: str, correct_back: str, user_answer: str) -> bool`: The contract for evaluating a user's answer.
+        *   `evaluate_answer(question_front: str, correct_back: str, user_answer: str, evaluation_hint: Optional[str] = None) -> EvaluationResult`: The contract for evaluating a user's answer, now returning an `EvaluationResult` object.
 *   **`gemini_client.py`**:
     *   **Class:** `GeminiClient` (implements `AIClientInterface`)
     *   **Responsibility (SRP):** Handles all communication with the Google Gemini API for answer evaluation.
     *   **Key Methods:**
         *   `__init__(api_key: str, model_name: str)`: Configures the Gemini API client.
-        *   `evaluate_answer(question_front: str, correct_back: str, user_answer: str) -> bool`: Constructs a prompt for the Gemini model, sends the request, and parses the response to determine if the user's answer is correct (expecting a "YES" or "NO" response from the AI).
-    *   **Interaction:** Used by `Application` to check the correctness of user answers.
+        *   `evaluate_answer(question_front: str, correct_back: str, user_answer: str, evaluation_hint: Optional[str] = None) -> EvaluationResult`: Constructs a prompt for the Gemini model (requesting a JSON response with correctness and explanation), sends the request, parses the JSON response, and returns an `EvaluationResult` object.
+    *   **Interaction:** Used by `Application` to check the correctness of user answers and get explanations.
 
 ### 7.6. User Interface Layer (`src/ui/`)
 
@@ -290,6 +302,7 @@ The application is structured into several distinct layers, each with a specific
         *   `display_user_answer(user_answer: str)`: Re-displays the user's entered answer after a screen clear.
         *   `display_correct_answer_feedback()`: Displays "DOBRZE" feedback.
         *   `display_incorrect_feedback_short()`: Displays "ŹLE" feedback.
+        *   `display_ai_explanation(explanation: str)`: Displays the AI-generated explanation for an incorrect answer.
         *   `display_correct_answer_only(correct_answer: str)`: Displays the correct answer.
         *   `wait_for_key_press(prompt: str = ...)`: Waits for a single key press without requiring Enter (platform-specific implementation).
         *   `display_message(message: str)`: Displays general messages to the user.
@@ -309,11 +322,11 @@ The application is structured into several distinct layers, each with a specific
             *   Displays the current flashcard question.
             *   Gets the user's answer.
             *   Handles user exit requests.
-            *   Uses the AI client to evaluate the answer.
-            *   Updates the flashcard's SRS state.
+            *   Uses the AI client to get an `EvaluationResult` (correctness and optional explanation), passing the `evaluation_hint` from the flashcard.
+            *   Updates the flashcard's SRS state based on `EvaluationResult.is_correct`.
             *   Saves progress to disk.
             *   Clears the screen again, displays updated stats, the question, and the user's answer.
-            *   Provides feedback (correct/incorrect, shows correct answer).
+            *   Provides feedback: "DOBRZE" or "ŹLE". If "ŹLE" and an AI explanation exists, displays it via `TerminalUI.display_ai_explanation()`. Then shows the correct answer.
             *   Waits for user input to continue.
             *   If an answer was incorrect and the card's level drops to 0, re-adds the card to the end of the current session's queue.
         4.  Displays end-of-session messages.
@@ -323,5 +336,3 @@ The application is structured into several distinct layers, each with a specific
 
 *   **Responsibility:** Initializes all the necessary components of the application (ConfigManager, data layer objects, SRSManager, AIClient, TerminalUI) and then creates and runs an instance of the `Application` class.
 *   Handles critical startup errors, such as failure to load configuration or initialize the AI client.
-
-This detailed architecture provides a modular and maintainable structure for the Flashcards SRS application.

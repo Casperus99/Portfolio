@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 # IMPORTANT: Define the absolute path to your project directory here.
 # Example for Windows: PROJECT_ROOT_PATH = "C:\\Users\\YourUser\\Documents\\my_python_project"
 # Example for Linux/macOS: PROJECT_ROOT_PATH = "/home/youruser/my_python_project"
-PROJECT_ROOT_PATH = "D:\\GiT\\Portfolio\\AI Engineering\\Flashcards" # <<< ZMIEŃ TĘ ŚCIEŻKĘ NA WŁAŚCIWĄ!
+PROJECT_ROOT_PATH = "D:\\GiT\\Portfolio\\AI Engineering\\Flashcard App" # <<< ZMIEŃ TĘ ŚCIEŻKĘ NA WŁAŚCIWĄ!
 
 # Define the name of the directory where input prompt templates are stored
 INPUT_PROMPTS_DIR_NAME = "input_prompts"

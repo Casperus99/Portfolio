@@ -1,29 +1,48 @@
-2025-05-31 13:08:52,275 - root - INFO - Logging system initialized with level: INFO.
-2025-05-31 13:08:52,275 - __main__ - INFO - Application starting...
-2025-05-31 13:08:52,275 - src.data.flashcard_repository - INFO - FlashcardRepository initialized.
-2025-05-31 13:08:52,275 - src.data.flashcard_manager - INFO - FlashcardManager initialized.
-2025-05-31 13:08:52,275 - src.srs.srs_manager - INFO - SRSManager initialized with intervals: {0: 0, 1: 1, 2: 2, 3: 4, 4: 7, 5: 12, 6: 20}
-2025-05-31 13:08:52,275 - src.srs.srs_manager - INFO - Min mastery level: 0, Max mastery level: 6
-2025-05-31 13:08:52,275 - src.ai.gemini_client - INFO - GeminiClient initialized with model: gemini-1.5-flash
-2025-05-31 13:08:52,275 - src.ui.terminal_ui - INFO - TerminalUI initialized.
-2025-05-31 13:08:52,275 - src.application - INFO - Application initialized.
-2025-05-31 13:08:52,275 - src.application - INFO - Application started.
-2025-05-31 13:08:52,284 - src.data.flashcard_manager - INFO - Attempting to load all flashcards from 'flashcards'.
-2025-05-31 13:08:52,284 - src.data.flashcard_repository - INFO - Scanning directory 'flashcards' for flashcard JSON files...
-2025-05-31 13:08:52,284 - src.data.flashcard_repository - INFO - Successfully loaded 2 flashcards from 'flashcards'.
-2025-05-31 13:08:52,285 - src.data.flashcard_manager - INFO - Loaded 2 flashcards into manager.
-2025-05-31 13:08:52,285 - src.srs.srs_manager - INFO - Found 1 flashcards due for review on 2025-05-31.
-2025-05-31 13:08:52,285 - src.application - INFO - Starting quiz session with 1 initially due flashcards.
-2025-05-31 13:08:52,289 - src.ui.terminal_ui - INFO - Displayed question for Flashcard ID: 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554
-2025-05-31 13:08:58,612 - src.srs.srs_manager - INFO - Flashcard ID 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554 updated. New level: 0, Last answered: 2025-05-31.
-2025-05-31 13:08:58,612 - src.data.flashcard_manager - INFO - Initiating save of all flashcards via repository.
-2025-05-31 13:08:58,612 - src.data.flashcard_repository - INFO - Attempting to save changes to 1 JSON files.
-2025-05-31 13:08:58,614 - src.data.flashcard_repository - INFO - All flashcard changes saved successfully.
-2025-05-31 13:08:58,614 - src.data.flashcard_manager - INFO - All flashcards save operation completed.
-2025-05-31 13:08:58,614 - src.application - INFO - Progress saved for flashcard ID: 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554
-2025-05-31 13:08:58,622 - src.ui.terminal_ui - INFO - Displayed question for Flashcard ID: 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554
-2025-05-31 13:08:58,622 - src.ui.terminal_ui - INFO - Displayed short incorrect answer feedback.
-2025-05-31 13:08:58,622 - src.ui.terminal_ui - INFO - Displayed correct answer: '- Awokado
+2025-06-02 21:09:55,633 - root - INFO - Logging system initialized with level: INFO.
+2025-06-02 21:09:55,633 - __main__ - INFO - Application starting...
+2025-06-02 21:09:55,633 - src.data.flashcard_repository - INFO - FlashcardRepository initialized.
+2025-06-02 21:09:55,633 - src.data.flashcard_manager - INFO - FlashcardManager initialized.
+2025-06-02 21:09:55,633 - src.srs.srs_manager - INFO - SRSManager initialized with intervals: {0: 0, 1: 1, 2: 2, 3: 4, 4: 7, 5: 12, 6: 20}
+2025-06-02 21:09:55,633 - src.srs.srs_manager - INFO - Min mastery level: 0, Max mastery level: 6
+2025-06-02 21:09:55,633 - src.ai.gemini_client - INFO - GeminiClient initialized with model: gemini-1.5-flash
+2025-06-02 21:09:55,633 - src.ui.terminal_ui - INFO - TerminalUI initialized.
+2025-06-02 21:09:55,634 - src.application - INFO - Application initialized.
+2025-06-02 21:09:55,634 - src.application - INFO - Application started.
+2025-06-02 21:09:55,643 - src.data.flashcard_manager - INFO - Attempting to load all flashcards from 'flashcards'.
+2025-06-02 21:09:55,643 - src.data.flashcard_repository - INFO - Scanning directory 'flashcards' for flashcard JSON files...
+2025-06-02 21:09:55,644 - src.data.flashcard_repository - INFO - Successfully loaded 2 flashcards from 'flashcards'.
+2025-06-02 21:09:55,644 - src.data.flashcard_manager - INFO - Loaded 2 flashcards into manager.
+2025-06-02 21:09:55,644 - src.srs.srs_manager - INFO - Found 2 flashcards due for review on 2025-06-02.
+2025-06-02 21:09:55,644 - src.application - INFO - Starting quiz session with 2 initially due flashcards.
+2025-06-02 21:09:55,649 - src.ui.terminal_ui - INFO - Displayed question for Flashcard ID: 6e31230a-8e2f-4e40-ac13-1ddba4888e76
+2025-06-02 21:10:32,844 - src.srs.srs_manager - INFO - Flashcard ID 6e31230a-8e2f-4e40-ac13-1ddba4888e76 updated. New level: 0, Last answered: 2025-06-02.
+2025-06-02 21:10:32,845 - src.data.flashcard_manager - INFO - Initiating save of all flashcards via repository.
+2025-06-02 21:10:32,845 - src.data.flashcard_repository - INFO - Attempting to save changes to 1 JSON files.
+2025-06-02 21:10:32,846 - src.data.flashcard_repository - INFO - All flashcard changes saved successfully.
+2025-06-02 21:10:32,847 - src.data.flashcard_manager - INFO - All flashcards save operation completed.
+2025-06-02 21:10:32,847 - src.application - INFO - Progress saved for flashcard ID: 6e31230a-8e2f-4e40-ac13-1ddba4888e76
+2025-06-02 21:10:32,855 - src.ui.terminal_ui - INFO - Displayed question for Flashcard ID: 6e31230a-8e2f-4e40-ac13-1ddba4888e76
+2025-06-02 21:10:32,855 - src.ui.terminal_ui - INFO - Displayed short incorrect answer feedback.
+2025-06-02 21:10:32,855 - src.ui.terminal_ui - INFO - Displayed AI explanation: 'Your answer is partially correct, mentioning some benefits and the high calorie count. However, it lacks detail and omits important aspects like fiber content, antioxidant and anti-inflammatory properties, specific vitamins and minerals, and the positive effects on gut health and blood pressure regulation.'
+2025-06-02 21:10:32,855 - src.ui.terminal_ui - INFO - Displayed correct answer: 'Zalety:
+- Bogate w zdrowe tłuszcze, błonnik, witaminy i minerały.
+- Silne właściwości antyoksydacyjne i przeciwzapalne.
+- Wspiera serce i jelita
+- Reguluje cholesterol i ciśnienie krwi
+
+Wady:
+- Wysoka kaloryczność'
+2025-06-02 21:11:32,241 - src.ui.terminal_ui - INFO - Displayed question for Flashcard ID: 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554
+2025-06-02 21:11:57,736 - src.srs.srs_manager - INFO - Flashcard ID 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554 updated. New level: 0, Last answered: 2025-06-02.
+2025-06-02 21:11:57,737 - src.data.flashcard_manager - INFO - Initiating save of all flashcards via repository.
+2025-06-02 21:11:57,737 - src.data.flashcard_repository - INFO - Attempting to save changes to 1 JSON files.
+2025-06-02 21:11:57,739 - src.data.flashcard_repository - INFO - All flashcard changes saved successfully.
+2025-06-02 21:11:57,739 - src.data.flashcard_manager - INFO - All flashcards save operation completed.
+2025-06-02 21:11:57,739 - src.application - INFO - Progress saved for flashcard ID: 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554
+2025-06-02 21:11:57,747 - src.ui.terminal_ui - INFO - Displayed question for Flashcard ID: 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554
+2025-06-02 21:11:57,748 - src.ui.terminal_ui - INFO - Displayed short incorrect answer feedback.
+2025-06-02 21:11:57,748 - src.ui.terminal_ui - INFO - Displayed AI explanation: 'Your answer missed mentioning 'Borówka Amerykańska', 'Guawa', and 'Kiwi'. It also included 'Banan', which is not in tier S.'
+2025-06-02 21:11:57,748 - src.ui.terminal_ui - INFO - Displayed correct answer: '- Awokado
 - Jerzyny
 - Borówka Amerykańska
 - Grejfrut
@@ -32,25 +51,3 @@
 - Ananas
 - Granat
 - Dynia'
-2025-05-31 13:09:00,262 - src.ui.terminal_ui - INFO - Displayed question for Flashcard ID: 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554
-2025-05-31 13:09:10,310 - src.srs.srs_manager - INFO - Flashcard ID 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554 updated. New level: 1, Last answered: 2025-05-31.
-2025-05-31 13:09:10,310 - src.data.flashcard_manager - INFO - Initiating save of all flashcards via repository.
-2025-05-31 13:09:10,311 - src.data.flashcard_repository - INFO - Attempting to save changes to 1 JSON files.
-2025-05-31 13:09:10,313 - src.data.flashcard_repository - INFO - All flashcard changes saved successfully.
-2025-05-31 13:09:10,313 - src.data.flashcard_manager - INFO - All flashcards save operation completed.
-2025-05-31 13:09:10,313 - src.application - INFO - Progress saved for flashcard ID: 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554
-2025-05-31 13:09:10,323 - src.ui.terminal_ui - INFO - Displayed question for Flashcard ID: 452e6cf5-2a0a-4a0f-893b-ee8c4be3f554
-2025-05-31 13:09:10,323 - src.ui.terminal_ui - INFO - Displayed correct answer feedback.
-2025-05-31 13:09:10,323 - src.ui.terminal_ui - INFO - Displayed correct answer: '- Awokado
-- Jerzyny
-- Borówka Amerykańska
-- Grejfrut
-- Guawa
-- Kiwi
-- Ananas
-- Granat
-- Dynia'
-2025-05-31 13:09:14,405 - src.ui.terminal_ui - INFO - Displayed message: 'Koniec pytań w tym dniu. Postępy zostały zapisane.'
-2025-05-31 13:09:14,405 - src.application - INFO - All due flashcards for today have been reviewed. Session ended.
-2025-05-31 13:09:14,405 - src.application - INFO - Application finished gracefully.
-2025-05-31 13:09:14,405 - __main__ - INFO - Application finished gracefully.

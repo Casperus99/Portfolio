@@ -1,1 +1,1 @@
-- Po dobrej odpowiedzi aplikacja nie powinna automatycznie przechodzić do kolejnego pytania. Powinna pokazać sukces i umożliwić wyjście z aplikacji poprzez kliknięcie "q".
+- Tryb produkcyjny i debugowy. Czyli w debugowym pokazują nam się i tak jeszcze poprawne odpowiedzi kiedy docelowo powinien być maksymalnie komentarz AI
