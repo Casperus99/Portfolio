@@ -78,6 +78,11 @@ class GeminiClient(AIClientInterface):
             f"Flashcard Question: \"{question_front}\"",
             f"Correct Answer (Back of Flashcard): \"{correct_back}\"",
             f"User's Answer: \"{user_answer}\""
+            f"If not specified in the evaluation hint: letter case is not important."
+            f"If not specified in the evaluation hint: small typos are acceptable."
+            f"If not specified in the evaluation hint: order of key-words is not important."
+            f"If not specified in the evaluation hint and the correct answer is some sort of a list: user must provide all items in the list, without any additional items."
+            f"If not specified in the evaluation hint and correct answer consist of some kind of senteces or phrases: user's response don't have to be EXACTLY the same, but must be valid paraphrase of the correct answer."
         ]
         if evaluation_hint:
             prompt_lines.append(f"Evaluation Hint: \"{evaluation_hint}\"")
