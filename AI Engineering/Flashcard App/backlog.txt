@@ -1,1 +1,0 @@
-- Tryb produkcyjny i debugowy. Czyli w debugowym pokazują nam się i tak jeszcze poprawne odpowiedzi kiedy docelowo powinien być maksymalnie komentarz AI
